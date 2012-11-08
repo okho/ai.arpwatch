@@ -5,6 +5,7 @@ Bundle-SymbolicName: ai.arpwatch; singleton:=true
 Bundle-Version: 1.0.1
 Bundle-Activator: ai.arpwatch.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ ai.arpwatch.jdbc.mysql.libs;bundle-version="5.1.22"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

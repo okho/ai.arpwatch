@@ -1,5 +1,6 @@
 package ai.arpwatch;
 
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.swt.widgets.Text;
@@ -21,6 +22,8 @@ public class View extends ViewPart {
 	public void createPartControl(Composite parent) {
 		parent.setLayout(null);
 		
+		JdbcLan db = new JdbcLan();
+
 		text = new Text(parent, SWT.BORDER);
 		text.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
 		text.setBounds(33, 48, 258, 44);
@@ -40,6 +43,7 @@ public class View extends ViewPart {
 		btnNewButton_1.setText("> IP адрес");
 
 	
+		
 		
 		
 	
