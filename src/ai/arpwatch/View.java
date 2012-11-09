@@ -8,12 +8,15 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+
 public class View extends ViewPart {
 	public View() {
 	}
 	public static final String ID = "ai.arpwatch.view";
-	private Text text;
-	private Text text_1;
+	private Text textFind;
+	private Text textIP;
 
 	/**
 	 * This is a callback that will allow us to create the viewer and initialize
@@ -21,27 +24,36 @@ public class View extends ViewPart {
 	 */
 	public void createPartControl(Composite parent) {
 		parent.setLayout(null);
-		
-		JdbcLan db = new JdbcLan();
 
-		text = new Text(parent, SWT.BORDER);
-		text.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
-		text.setBounds(33, 48, 258, 44);
 		
-		Button btnNewButton = new Button(parent, SWT.NONE);
-		btnNewButton.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
-		btnNewButton.setBounds(321, 48, 151, 44);
-		btnNewButton.setText("Найти");
 		
-		text_1 = new Text(parent, SWT.BORDER);
-		text_1.setFont(SWTResourceManager.getFont("Tahoma", 12, SWT.NORMAL));
-		text_1.setBounds(33, 151, 159, 32);
+		textFind = new Text(parent, SWT.BORDER);
+		textFind.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
+		textFind.setBounds(33, 48, 258, 44);
 		
-		Button btnNewButton_1 = new Button(parent, SWT.NONE);
-		btnNewButton_1.setFont(SWTResourceManager.getFont("Tahoma", 12, SWT.NORMAL));
-		btnNewButton_1.setBounds(212, 151, 106, 32);
-		btnNewButton_1.setText("> IP адрес");
+		Button btnFind = new Button(parent, SWT.NONE);
+		btnFind.setFont(SWTResourceManager.getFont("Tahoma", 14, SWT.NORMAL));
+		btnFind.setBounds(321, 48, 151, 44);
+		btnFind.setText("Найти");
+		
+		textIP = new Text(parent, SWT.BORDER);
+		textIP.setFont(SWTResourceManager.getFont("Tahoma", 12, SWT.NORMAL));
+		textIP.setBounds(33, 151, 159, 32);
+		
+		final Button btnIP = new Button(parent, SWT.NONE);
+		btnIP.setFont(SWTResourceManager.getFont("Tahoma", 12, SWT.NORMAL));
+		btnIP.setBounds(212, 151, 106, 32);
+		btnIP.setText("> IP адрес");
 
+		btnIP.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+
+			    btnIP.getText();
+			    LanInfoDB lanInfo = new LanInfoDB();
+			
+			}
+		});
 	
 		
 		
