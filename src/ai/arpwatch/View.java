@@ -1,6 +1,8 @@
 package ai.arpwatch;
 
 
+import java.sql.SQLException;
+
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.eclipse.swt.widgets.Text;
@@ -10,6 +12,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Label;
 
 public class View extends ViewPart {
 	public View() {
@@ -17,6 +20,7 @@ public class View extends ViewPart {
 	public static final String ID = "ai.arpwatch.view";
 	private Text textFind;
 	private Text textIP;
+	private Text textRes;
 
 	/**
 	 * This is a callback that will allow us to create the viewer and initialize
@@ -44,13 +48,23 @@ public class View extends ViewPart {
 		btnIP.setFont(SWTResourceManager.getFont("Tahoma", 12, SWT.NORMAL));
 		btnIP.setBounds(212, 151, 106, 32);
 		btnIP.setText("> IP адрес");
-
+		
+		textRes = new Text(parent, SWT.WRAP);
+		textRes.setEditable(false);
+		textRes.setText("-");
+		textRes.setBounds(33, 211, 529, 232);
+		
+		
 		btnIP.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 
-			    btnIP.getText();
+			    // connect to mysql db laninfo
 			    LanInfoDB lanInfo = new LanInfoDB();
+			    
+			    // select IP
+				String res = lanInfo.sIP(textIP.getText());
+				textRes.setText(res);
 			
 			}
 		});
