@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class LanInfoDB {
 	private Connection con;
@@ -98,6 +97,30 @@ public class LanInfoDB {
 		}
 	    return res;
 	}
+	public String sDesc(String textDesc) {
+		String res="", ip, desc;
 	
+	    try {
+	    	
+	    	PreparedStatement st = con.prepareStatement ("select * from ipdesc where descr like ?"); 
+	    	st.setString (1, "%" + textDesc + "%"); 
+	    	
+		    ResultSet rs = st.executeQuery();
+
+		    while (rs.next()) {
+		    	ip = rs.getString("ip");
+		    	desc = rs.getString("descr");
+		    	res += "\n******************************";
+		    	res += "\nIP: " + ip;
+		    	res += "\ndescr: " + desc;
+		    	res += "\n******************************";
+		    }
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	    return res;
+	}
+
 	
 }

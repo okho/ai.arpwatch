@@ -1,7 +1,6 @@
 package ai.arpwatch;
 
 
-import java.sql.SQLException;
 
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
@@ -12,7 +11,6 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
 
@@ -86,13 +84,10 @@ public class View extends ViewPart {
 				if (e.character == SWT.CR) {  
 				    // connect to mysql db laninfo
 				    LanInfoDB lanInfo = new LanInfoDB();
-				    
 				    // select IP
 					String res = lanInfo.sIP(textIP.getText());
 					textRes.setText(res);
                 }  
-
-
 			}
 		});
 
@@ -110,8 +105,43 @@ public class View extends ViewPart {
 			}
 		});
 
-	
-	
+		textMAC.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.character == SWT.CR) {  
+				    // connect to mysql db laninfo
+				    LanInfoDB lanInfo = new LanInfoDB();
+				    // select IP
+					String res = lanInfo.sMAC(textMAC.getText());
+					textRes.setText(res);
+                }  
+			}
+		});
+
+		btnDesc.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			    // connect to mysql db laninfo
+			    LanInfoDB lanInfo = new LanInfoDB();
+			    // select MAC
+				String res = lanInfo.sDesc(textDesc.getText());
+				textRes.setText(res);
+			}
+		});
+
+		textDesc.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.character == SWT.CR) {  
+				    // connect to mysql db laninfo
+				    LanInfoDB lanInfo = new LanInfoDB();
+				    // select IP
+					String res = lanInfo.sDesc(textDesc.getText());
+					textRes.setText(res);
+                }  
+			}
+		});
+
 	
 	}
 
