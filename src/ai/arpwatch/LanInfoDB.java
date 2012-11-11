@@ -33,30 +33,11 @@ public class LanInfoDB {
 		}
 	}
 
-	private void printResults(ResultSet rs) throws SQLException {
-		String ip, mac , timecreate, timelast;
-		
-		while (rs.next()) {
-			ip = rs.getString("ip");
-			mac = rs.getString("mac");
-			timecreate = rs.getString("timecreate");
-			//timelast = rs.getDouble("timelast");
-			timelast = rs.getString("timelast");
-			System.out.println("******************************");
-			System.out.println("IP: " + ip);
-			System.out.println("MAC: " + mac);
-			System.out.println("TimeCreate: " + timecreate);
-			System.out.println("TimeLast: " + timelast);
-			System.out.println("******************************");
-		}
-	}
-
 	public String sIP(String textIP) {
 		String res="", ip, mac , timecreate, timelast;
 	
 	    try {
-	    	
-	    	
+	    		    	
 	    	PreparedStatement st = con.prepareStatement ("select * from arp where ip = ?"); 
 	    	st.setString (1, textIP); 
 	    	
@@ -76,14 +57,47 @@ public class LanInfoDB {
 		    	res += "\nTimeCreate: " + timecreate;
 		    	res += "\nTimeLast: " + timelast;
 		    	res += "\n******************************";
-		    	
 		    }
 		} 
 		catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 	    return res;
-	    
 	}
 
+	public String sMAC(String textMAC) {
+		String res="", vlan, mac, ipsw, port, timecreate, timelast;
+	
+	    try {
+	    		    	
+	    	PreparedStatement st = con.prepareStatement ("select * from ports where mac = ?"); 
+	    	st.setString (1, textMAC); 
+	    	
+		    ResultSet rs = st.executeQuery();
+
+		    while (rs.next()) {
+		    	vlan = rs.getString("vlan");
+		    	mac = rs.getString("mac");
+		    	ipsw = rs.getString("ipsw");
+		    	port = rs.getString("port");
+		    	timecreate = rs.getString("timecreate");
+		    	//timelast = rs.getDouble("timelast");
+		    	timelast = rs.getString("timelast");
+		    	res += "\n******************************";
+		    	res += "\nvlan: " + vlan;
+		    	res += "\nMAC: " + mac;
+		    	res += "\nipsw: " + ipsw;
+		    	res += "\nport: " + port;
+		    	res += "\nCreate: " + timecreate;
+		    	res += "\nLast: " + timelast;
+		    	res += "\n******************************";
+		    }
+		} 
+		catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+	    return res;
+	}
+	
+	
 }
