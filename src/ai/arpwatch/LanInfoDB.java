@@ -40,8 +40,6 @@ public class LanInfoDB {
 	    	PreparedStatement st = con.prepareStatement ("select * from arp where ip = ?"); 
 	    	st.setString (1, textIP); 
 	    	
-		    //Statement st = con.createStatement();
-		    //String query = "select * from arp where ip = " + textIP;
 		    ResultSet rs = st.executeQuery();
 
 		    while (rs.next()) {
