@@ -6,6 +6,7 @@ Bundle-Version: 1.0.1
 Bundle-Activator: ai.arpwatch.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- ai.arpwatch.jdbc.mysql.libs;bundle-version="5.1.22"
+ ai.arpwatch.jdbc.mysql.libs;bundle-version="5.1.22",
+ ai.arpwatch.jdbc.sqlite.libs;bundle-version="3.7.2"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
