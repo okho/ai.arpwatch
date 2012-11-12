@@ -71,6 +71,8 @@ public class View extends ViewPart {
 			    // connect to mysql db laninfo
 			    LanInfoDB lanInfo = new LanInfoDB();
 			    
+			    Sqlite SqlLite = new Sqlite();
+
 			    // select IP
 				String res = lanInfo.sIP(textIP.getText());
 				textRes.setText(res);
